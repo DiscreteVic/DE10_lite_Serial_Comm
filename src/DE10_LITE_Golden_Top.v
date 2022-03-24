@@ -130,11 +130,10 @@ module DE10_LITE_Golden_Top(
 wire clkSpeed;
 wire clkLow;
 
-reg [7:0]step;
-reg tx;
+wire tx;
 reg [7:0]tx_data;
-reg byteTransmitted;
-reg transmitByte;
+wire portAvailable;
+reg send;
 
 
 //=======================================================
@@ -143,41 +142,42 @@ reg transmitByte;
 
 
 Prescaler #(.N(4)) pres(.clk_in(MAX10_CLK1_50), .clk_out(clkSpeed)); //3Mbaud
+//Prescaler #(.N(20)) pres(.clk_in(ADC_CLK_10), .clk_out(clkSpeed));
 
 SevSegController ssc0(.dig(tx_data[3:0]),.dot(0),.leds(HEX0));
 SevSegController ssc1(.dig(tx_data[7:4]),.dot(0),.leds(HEX1));
 
+UART uart0(.clk(clkSpeed),  .tx(tx),  .txData(tx_data),  .portAvailable(portAvailable),  .send(send));
+
 assign ARDUINO_IO[12] = tx;
-assign ARDUINO_IO[13] = clkSpeed;
+assign ARDUINO_IO[13] = portAvailable;
 
+reg [7:0]test;
+reg [7:0]step;
 
+initial test = 8'H30;
 
-initial step = 8'h00;
+always @(posedge(clkSpeed)) begin
 
-always @(posedge(clkSpeed * SW[9])) begin
-	
-	tx_data <= SW[7:0];
-	case (step)
-		8'H00: 
-			begin
-				tx <= 0; 
-				step <= step + 1;
-			end
-		8'H09: 
-			begin
-				tx <= 1;
-				byteTransmitted = 1'b1;
-				transmitByte = 1'b0;
-				step = 8'H00;
-			end
-		default: 
-			begin
-				tx <= tx_data[step-1];
-				step <= step + 1;
-			end
-		
-	endcase
+	tx_data <= test;
+	send <= 1;
 end
+
+always @(posedge(portAvailable)) begin
+
+	test <= test + 1;
+
+	if(test == 8'H39) begin
+		test <= 8'H30;
+	end
+
+end
+
+
+
+
+
+
 /*
 always @(negedge(KEY[0])) begin
 	if(step == 8'H03) step = 8'H00;
