@@ -1,0 +1,43 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate D:\Projects\DE10_lite_Serial_Comm\src\unsaved.qsys --block-symbol-file --output-directory=D:\Projects\DE10_lite_Serial_Comm\src\unsaved --family="MAX 10" --part=10M50DAF484C6GES
+Progress: Loading src/unsaved.qsys
+Progress: Reading input file
+Progress: Adding clk_0 [clock_source 20.1]
+Progress: Parameterizing module clk_0
+Progress: Adding master_0 [altera_jtag_avalon_master 20.1]
+Progress: Parameterizing module master_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Warning: unsaved.master_0: master_0.master must be connected to an Avalon-MM slave
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate D:\Projects\DE10_lite_Serial_Comm\src\unsaved.qsys --synthesis=VERILOG --output-directory=D:\Projects\DE10_lite_Serial_Comm\src\unsaved\synthesis --family="MAX 10" --part=10M50DAF484C6GES
+Progress: Loading src/unsaved.qsys
+Progress: Reading input file
+Progress: Adding clk_0 [clock_source 20.1]
+Progress: Parameterizing module clk_0
+Progress: Adding master_0 [altera_jtag_avalon_master 20.1]
+Progress: Parameterizing module master_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Warning: unsaved.master_0: master_0.master must be connected to an Avalon-MM slave
+Info: unsaved: Generating unsaved "unsaved" for QUARTUS_SYNTH
+Info: master_0: "unsaved" instantiated altera_jtag_avalon_master "master_0"
+Info: jtag_phy_embedded_in_jtag_master: "master_0" instantiated altera_jtag_dc_streaming "jtag_phy_embedded_in_jtag_master"
+Info: timing_adt: "master_0" instantiated timing_adapter "timing_adt"
+Info: fifo: "master_0" instantiated altera_avalon_sc_fifo "fifo"
+Info: b2p: "master_0" instantiated altera_avalon_st_bytes_to_packets "b2p"
+Info: p2b: "master_0" instantiated altera_avalon_st_packets_to_bytes "p2b"
+Info: transacto: "master_0" instantiated altera_avalon_packets_to_master "transacto"
+Info: b2p_adapter: "master_0" instantiated channel_adapter "b2p_adapter"
+Info: p2b_adapter: "master_0" instantiated channel_adapter "p2b_adapter"
+Info: rst_controller: "master_0" instantiated altera_reset_controller "rst_controller"
+Info: unsaved: Done "unsaved" with 11 modules, 23 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

@@ -1,0 +1,7 @@
+
+State Machine - |DE10_LITE_Golden_Top|uart:com|rx_state
+Name rx_state.RX_WAIT_FOR_STOP rx_state.RX_RECEIVING rx_state.RX_CHECK_START rx_state.RX_INITIAL_STATE 
+rx_state.RX_INITIAL_STATE 0 0 0 0 
+rx_state.RX_CHECK_START 0 0 1 1 
+rx_state.RX_RECEIVING 0 1 0 1 
+rx_state.RX_WAIT_FOR_STOP 1 0 0 1 

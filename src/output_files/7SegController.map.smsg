@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at DE10_LITE_Golden_Top.v(157): always construct contains both blocking and non-blocking assignments File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 157
