@@ -155,7 +155,7 @@ assign ARDUINO_IO[13] = portAvailable;
 reg [7:0]test;
 reg [7:0]step;
 
-initial test = 8'H30;
+initial test = 8'H31;
 
 always @(posedge(clkSpeed)) begin
 
@@ -163,15 +163,7 @@ always @(posedge(clkSpeed)) begin
 	send <= 1;
 end
 
-always @(posedge(portAvailable)) begin
 
-	test <= test + 1;
-
-	if(test == 8'H39) begin
-		test <= 8'H30;
-	end
-
-end
 
 
 

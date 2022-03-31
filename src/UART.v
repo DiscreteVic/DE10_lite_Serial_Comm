@@ -33,6 +33,10 @@ module UART (input clk, output tx, input [7:0]txData, output portAvailable, inpu
 			8'H09:  // STOP BIT
 				begin
 					txStream <= 1;
+					step = 8'H0A; 
+				end
+			8'H0A:  // Free port
+				begin
 					step = 8'HFF; // TO IDLE
 					pAvailable <= 1;
 				end
