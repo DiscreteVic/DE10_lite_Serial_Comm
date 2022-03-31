@@ -3,12 +3,17 @@
 //   V0.1 :| viCppDev			    :| 24/03/2022:| UART only transmit module
 // ============================================================================
 
-module UART (input clk, output tx, input [7:0]txData, output portAvailable, input send);
+module UART (input clk, output tx, input [7:0]txData, output portAvailable, input send, output pulse);
 
 	reg [7:0]step;
 	reg pAvailable;
 	reg txStream;
 	reg [7:0]intData;
+	reg sendByte;
+	//wire pulse;
+	
+	PulseGenerator pGen(.clk(!clk), .in(send), .out(pulse));
+
 
 	assign portAvailable = pAvailable;
 	assign tx = txStream;
@@ -16,9 +21,11 @@ module UART (input clk, output tx, input [7:0]txData, output portAvailable, inpu
 	initial step = 8'HFF; //INITIAL STATUS IS IDLE
 
 
+
+
 	always @(posedge(clk)) begin
 
-		if(send == 1'b1 && step == 8'HFF) begin
+		if(pulse == 1'b1 && step == 8'HFF) begin
 			step = 8'H00; 
 			intData <= txData;
 		end

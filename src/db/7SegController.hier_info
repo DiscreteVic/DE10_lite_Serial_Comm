@@ -1,6 +1,6 @@
 |DE10_LITE_Golden_Top
 ADC_CLK_10 => ~NO_FANOUT~
-MAX10_CLK1_50 => MAX10_CLK1_50.IN1
+MAX10_CLK1_50 => MAX10_CLK1_50.IN2
 HEX0[0] <= SevSegController:ssc0.leds
 HEX0[1] <= SevSegController:ssc0.leds
 HEX0[2] <= SevSegController:ssc0.leds
@@ -49,7 +49,7 @@ HEX5[4] <= <GND>
 HEX5[5] <= <GND>
 HEX5[6] <= <GND>
 HEX5[7] <= <GND>
-KEY[0] => ~NO_FANOUT~
+KEY[0] => _.IN1
 KEY[1] => ~NO_FANOUT~
 LEDR[0] <= <GND>
 LEDR[1] <= <GND>
@@ -102,7 +102,7 @@ ARDUINO_IO[7] <> <UNC>
 ARDUINO_IO[8] <> <UNC>
 ARDUINO_IO[9] <> <UNC>
 ARDUINO_IO[10] <> <UNC>
-ARDUINO_IO[11] <> <UNC>
+ARDUINO_IO[11] <> ARDUINO_IO[11]
 ARDUINO_IO[12] <> ARDUINO_IO[12]
 ARDUINO_IO[13] <> ARDUINO_IO[13]
 ARDUINO_IO[14] <> <UNC>
@@ -146,12 +146,23 @@ GPIO[34] <> <UNC>
 GPIO[35] <> <UNC>
 
 
-|DE10_LITE_Golden_Top|Prescaler:pres
+|DE10_LITE_Golden_Top|Prescaler:presA
 clk_in => count[0].CLK
 clk_in => count[1].CLK
 clk_in => count[2].CLK
 clk_in => count[3].CLK
 clk_out <= count[3].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|DE10_LITE_Golden_Top|Prescaler:presB
+clk_in => count[0].CLK
+clk_in => count[1].CLK
+clk_in => count[2].CLK
+clk_in => count[3].CLK
+clk_in => count[4].CLK
+clk_in => count[5].CLK
+clk_in => count[6].CLK
+clk_out <= count[6].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |DE10_LITE_Golden_Top|SevSegController:ssc0
@@ -317,6 +328,7 @@ clk => step[4].CLK
 clk => step[5].CLK
 clk => step[6].CLK
 clk => step[7].CLK
+clk => _.IN1
 tx <= txStream.DB_MAX_OUTPUT_PORT_TYPE
 txData[0] => intData[0].DATAIN
 txData[1] => intData[1].DATAIN
@@ -327,6 +339,29 @@ txData[5] => intData[5].DATAIN
 txData[6] => intData[6].DATAIN
 txData[7] => intData[7].DATAIN
 portAvailable <= pAvailable.DB_MAX_OUTPUT_PORT_TYPE
-send => always0.IN1
+send => send.IN1
+pulse <= PulseGenerator:pGen.out
+
+
+|DE10_LITE_Golden_Top|UART:uart0|PulseGenerator:pGen
+clk => setA.IN0
+clk => resetA.IN1
+in => setA.IN1
+in => resetB.IN1
+out <= qA.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|DE10_LITE_Golden_Top|UART:uart0|PulseGenerator:pGen|FlipFlopSR:ffSRA
+Set => Qout.IN1
+Reset => nQout.IN0
+Qout <= Qout.DB_MAX_OUTPUT_PORT_TYPE
+nQout <= nQout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|DE10_LITE_Golden_Top|UART:uart0|PulseGenerator:pGen|FlipFlopSR:ffSRB
+Set => Qout.IN1
+Reset => nQout.IN0
+Qout <= Qout.DB_MAX_OUTPUT_PORT_TYPE
+nQout <= nQout.DB_MAX_OUTPUT_PORT_TYPE
 
 

@@ -127,13 +127,16 @@ module DE10_LITE_Golden_Top(
 //  REG/WIRE declarations
 //=======================================================
 
-wire clkSpeed;
+wire clkFast;
 wire clkLow;
 
 wire tx;
 reg [7:0]tx_data;
 wire portAvailable;
+reg [7:0]step;
+wire pulse;
 reg send;
+
 
 
 //=======================================================
@@ -141,39 +144,42 @@ reg send;
 //=======================================================
 
 
-Prescaler #(.N(4)) pres(.clk_in(MAX10_CLK1_50), .clk_out(clkSpeed)); //3Mbaud
-//Prescaler #(.N(20)) pres(.clk_in(ADC_CLK_10), .clk_out(clkSpeed));
+Prescaler #(.N(4)) presA(.clk_in(MAX10_CLK1_50), .clk_out(clkFast)); //3Mbaud
+Prescaler #(.N(7)) presB(.clk_in(MAX10_CLK1_50), .clk_out(clkLow));
 
-SevSegController ssc0(.dig(tx_data[3:0]),.dot(0),.leds(HEX0));
-SevSegController ssc1(.dig(tx_data[7:4]),.dot(0),.leds(HEX1));
+SevSegController ssc0(.dig(test[3:0]),.dot(!KEY[0]),.leds(HEX0));
+SevSegController ssc1(.dig(test[7:4]),.dot(send),.leds(HEX1));
 
-UART uart0(.clk(clkSpeed),  .tx(tx),  .txData(tx_data),  .portAvailable(portAvailable),  .send(send));
+UART uart0(.clk(clkFast),  .tx(tx),  .txData(tx_data),  .portAvailable(portAvailable),  .send(send), .pulse(pulse));
 
+assign ARDUINO_IO[11] = clkFast;
 assign ARDUINO_IO[12] = tx;
-assign ARDUINO_IO[13] = portAvailable;
+assign ARDUINO_IO[13] = clkLow;
 
 reg [7:0]test;
-reg [7:0]step;
 
 initial test = 8'H31;
+initial send = 0;
 
-always @(posedge(clkSpeed)) begin
 
-	tx_data <= test;
-	send <= 1;
+
+
+always @(posedge(clkLow)) begin
+
+	case(step)
+		8'H00: begin
+			if(test < 8'H39) test <= test + 1;
+			else test <= 8'H31;
+			tx_data <= test;
+			send <= 1;
+			step <= step + 1;
+		end
+		8'H01: begin
+			send <= 0;
+			step <= 8'H00;
+		end
+
+	endcase
 end
 
-
-
-
-
-
-
-
-/*
-always @(negedge(KEY[0])) begin
-	if(step == 8'H03) step = 8'H00;
-	else step <= step + 1;
-end
-*/
 endmodule

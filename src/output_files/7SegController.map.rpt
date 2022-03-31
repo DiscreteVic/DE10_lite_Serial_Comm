@@ -1,5 +1,5 @@
 Analysis & Synthesis report for 7SegController
-Thu Mar 24 21:58:17 2022
+Thu Mar 31 22:37:43 2022
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -13,17 +13,20 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. Registers Removed During Synthesis
-  9. General Register Statistics
- 10. Inverted Register Statistics
- 11. Multiplexer Restructuring Statistics (Restructuring Performed)
- 12. Parameter Settings for User Entity Instance: Prescaler:pres
- 13. Port Connectivity Checks: "SevSegController:ssc1"
- 14. Port Connectivity Checks: "SevSegController:ssc0"
- 15. Post-Synthesis Netlist Statistics for Top Partition
- 16. Elapsed Time Per Partition
- 17. Analysis & Synthesis Messages
- 18. Analysis & Synthesis Suppressed Messages
+  8. Logic Cells Representing Combinational Loops
+  9. Registers Removed During Synthesis
+ 10. General Register Statistics
+ 11. Inverted Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for User Entity Instance: Prescaler:presA
+ 14. Parameter Settings for User Entity Instance: Prescaler:presB
+ 15. Port Connectivity Checks: "UART:uart0|PulseGenerator:pGen|FlipFlopSR:ffSRB"
+ 16. Port Connectivity Checks: "UART:uart0|PulseGenerator:pGen|FlipFlopSR:ffSRA"
+ 17. Port Connectivity Checks: "UART:uart0"
+ 18. Post-Synthesis Netlist Statistics for Top Partition
+ 19. Elapsed Time Per Partition
+ 20. Analysis & Synthesis Messages
+ 21. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -50,15 +53,15 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Mar 24 21:58:17 2022       ;
+; Analysis & Synthesis Status        ; Successful - Thu Mar 31 22:37:43 2022       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; 7SegController                              ;
 ; Top-level Entity Name              ; DE10_LITE_Golden_Top                        ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 87                                          ;
-;     Total combinational functions  ; 73                                          ;
-;     Dedicated logic registers      ; 38                                          ;
-; Total registers                    ; 38                                          ;
+; Total logic elements               ; 111                                         ;
+;     Total combinational functions  ; 98                                          ;
+;     Dedicated logic registers      ; 42                                          ;
+; Total registers                    ; 42                                          ;
 ; Total pins                         ; 145                                         ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
@@ -178,6 +181,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------+-----------------+------------------------+--------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                 ; Library ;
 +----------------------------------+-----------------+------------------------+--------------------------------------------------------------+---------+
+; FlipFlopSR.v                     ; yes             ; User Verilog HDL File  ; D:/Projects/DE10_lite_Serial_Comm/src/FlipFlopSR.v           ;         ;
+; PulseGenerator.v                 ; yes             ; User Verilog HDL File  ; D:/Projects/DE10_lite_Serial_Comm/src/PulseGenerator.v       ;         ;
 ; UART.v                           ; yes             ; User Verilog HDL File  ; D:/Projects/DE10_lite_Serial_Comm/src/UART.v                 ;         ;
 ; DE10_LITE_Golden_Top.v           ; yes             ; User Verilog HDL File  ; D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v ;         ;
 ; SevSegController.v               ; yes             ; User Verilog HDL File  ; D:/Projects/DE10_lite_Serial_Comm/src/SevSegController.v     ;         ;
@@ -185,60 +190,80 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------+-----------------+------------------------+--------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                           ;
-+---------------------------------------------+-------------------------+
-; Resource                                    ; Usage                   ;
-+---------------------------------------------+-------------------------+
-; Estimated Total logic elements              ; 87                      ;
-;                                             ;                         ;
-; Total combinational functions               ; 73                      ;
-; Logic element usage by number of LUT inputs ;                         ;
-;     -- 4 input functions                    ; 45                      ;
-;     -- 3 input functions                    ; 12                      ;
-;     -- <=2 input functions                  ; 16                      ;
-;                                             ;                         ;
-; Logic elements by mode                      ;                         ;
-;     -- normal mode                          ; 59                      ;
-;     -- arithmetic mode                      ; 14                      ;
-;                                             ;                         ;
-; Total registers                             ; 38                      ;
-;     -- Dedicated logic registers            ; 38                      ;
-;     -- I/O registers                        ; 0                       ;
-;                                             ;                         ;
-; I/O pins                                    ; 145                     ;
-;                                             ;                         ;
-; Embedded Multiplier 9-bit elements          ; 0                       ;
-;                                             ;                         ;
-; Maximum fan-out node                        ; Prescaler:pres|count[3] ;
-; Maximum fan-out                             ; 27                      ;
-; Total fan-out                               ; 542                     ;
-; Average fan-out                             ; 1.19                    ;
-+---------------------------------------------+-------------------------+
++--------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                        ;
++---------------------------------------------+----------------------+
+; Resource                                    ; Usage                ;
++---------------------------------------------+----------------------+
+; Estimated Total logic elements              ; 111                  ;
+;                                             ;                      ;
+; Total combinational functions               ; 98                   ;
+; Logic element usage by number of LUT inputs ;                      ;
+;     -- 4 input functions                    ; 51                   ;
+;     -- 3 input functions                    ; 24                   ;
+;     -- <=2 input functions                  ; 23                   ;
+;                                             ;                      ;
+; Logic elements by mode                      ;                      ;
+;     -- normal mode                          ; 79                   ;
+;     -- arithmetic mode                      ; 19                   ;
+;                                             ;                      ;
+; Total registers                             ; 42                   ;
+;     -- Dedicated logic registers            ; 42                   ;
+;     -- I/O registers                        ; 0                    ;
+;                                             ;                      ;
+; I/O pins                                    ; 145                  ;
+;                                             ;                      ;
+; Embedded Multiplier 9-bit elements          ; 0                    ;
+;                                             ;                      ;
+; Maximum fan-out node                        ; UART:uart0|always0~3 ;
+; Maximum fan-out                             ; 25                   ;
+; Total fan-out                               ; 642                  ;
+; Average fan-out                             ; 1.32                 ;
++---------------------------------------------+----------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                 ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------------------------------+----------------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                         ; Entity Name          ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------------------------------+----------------------+--------------+
-; |DE10_LITE_Golden_Top      ; 73 (16)             ; 38 (16)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 145  ; 0            ; 0          ; |DE10_LITE_Golden_Top                       ; DE10_LITE_Golden_Top ; work         ;
-;    |Prescaler:pres|        ; 4 (4)               ; 4 (4)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|Prescaler:pres        ; Prescaler            ; work         ;
-;    |SevSegController:ssc0| ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|SevSegController:ssc0 ; SevSegController     ; work         ;
-;    |SevSegController:ssc1| ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|SevSegController:ssc1 ; SevSegController     ; work         ;
-;    |UART:uart0|            ; 39 (39)             ; 18 (18)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|UART:uart0            ; UART                 ; work         ;
-+----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------------------------------+----------------------+--------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                            ;
++-----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-----------------------------------------------------------------------+----------------------+--------------+
+; Compilation Hierarchy Node  ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                   ; Entity Name          ; Library Name ;
++-----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-----------------------------------------------------------------------+----------------------+--------------+
+; |DE10_LITE_Golden_Top       ; 98 (22)             ; 42 (17)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 145  ; 0            ; 0          ; |DE10_LITE_Golden_Top                                                 ; DE10_LITE_Golden_Top ; work         ;
+;    |Prescaler:presA|        ; 1 (1)               ; 1 (1)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|Prescaler:presA                                 ; Prescaler            ; work         ;
+;    |Prescaler:presB|        ; 7 (7)               ; 7 (7)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|Prescaler:presB                                 ; Prescaler            ; work         ;
+;    |SevSegController:ssc0|  ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|SevSegController:ssc0                           ; SevSegController     ; work         ;
+;    |SevSegController:ssc1|  ; 8 (8)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|SevSegController:ssc1                           ; SevSegController     ; work         ;
+;    |UART:uart0|             ; 53 (51)             ; 17 (17)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|UART:uart0                                      ; UART                 ; work         ;
+;       |PulseGenerator:pGen| ; 2 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|UART:uart0|PulseGenerator:pGen                  ; PulseGenerator       ; work         ;
+;          |FlipFlopSR:ffSRA| ; 1 (1)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|UART:uart0|PulseGenerator:pGen|FlipFlopSR:ffSRA ; FlipFlopSR           ; work         ;
+;          |FlipFlopSR:ffSRB| ; 1 (1)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |DE10_LITE_Golden_Top|UART:uart0|PulseGenerator:pGen|FlipFlopSR:ffSRB ; FlipFlopSR           ; work         ;
++-----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-----------------------------------------------------------------------+----------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+--------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                             ;
-+---------------------------------------+----------------------------------------+
-; Register name                         ; Reason for Removal                     ;
-+---------------------------------------+----------------------------------------+
-; send                                  ; Stuck at VCC due to stuck port data_in ;
-; Total Number of Removed Registers = 1 ;                                        ;
-+---------------------------------------+----------------------------------------+
++------------------------------------------------------------+
+; Logic Cells Representing Combinational Loops               ;
++--------------------------------------------------------+---+
+; Logic Cell Name                                        ;   ;
++--------------------------------------------------------+---+
+; UART:uart0|PulseGenerator:pGen|FlipFlopSR:ffSRA|Qout~0 ;   ;
+; UART:uart0|PulseGenerator:pGen|FlipFlopSR:ffSRB|Qout~0 ;   ;
+; Number of logic cells representing combinational loops ; 2 ;
++--------------------------------------------------------+---+
+Note: All cells listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++---------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                              ;
++----------------------------------------+----------------------------------------+
+; Register name                          ; Reason for Removal                     ;
++----------------------------------------+----------------------------------------+
+; step[1..7]                             ; Stuck at GND due to stuck port data_in ;
+; step[0]                                ; Merged with send                       ;
+; Prescaler:presA|count[0]               ; Merged with Prescaler:presB|count[0]   ;
+; Prescaler:presA|count[1]               ; Merged with Prescaler:presB|count[1]   ;
+; Prescaler:presA|count[2]               ; Merged with Prescaler:presB|count[2]   ;
+; Total Number of Removed Registers = 11 ;                                        ;
++----------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -246,12 +271,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 38    ;
+; Total registers                              ; 42    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 8     ;
+; Number of registers using Clock Enable       ; 24    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -261,17 +286,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------------------------+---------+
 ; Inverted Register                       ; Fan out ;
 +-----------------------------------------+---------+
-; test[5]                                 ; 3       ;
-; test[4]                                 ; 3       ;
-; UART:uart0|step[7]                      ; 9       ;
-; UART:uart0|step[3]                      ; 7       ;
-; UART:uart0|step[0]                      ; 5       ;
-; UART:uart0|step[1]                      ; 6       ;
-; UART:uart0|step[2]                      ; 5       ;
-; UART:uart0|step[4]                      ; 5       ;
-; UART:uart0|step[5]                      ; 5       ;
-; UART:uart0|step[6]                      ; 6       ;
-; Total number of inverted registers = 10 ;         ;
+; test[0]                                 ; 10      ;
+; test[5]                                 ; 10      ;
+; test[4]                                 ; 10      ;
+; UART:uart0|step[0]                      ; 7       ;
+; UART:uart0|step[1]                      ; 10      ;
+; UART:uart0|step[2]                      ; 6       ;
+; UART:uart0|step[3]                      ; 6       ;
+; UART:uart0|step[4]                      ; 7       ;
+; UART:uart0|step[5]                      ; 6       ;
+; UART:uart0|step[7]                      ; 11      ;
+; UART:uart0|step[6]                      ; 5       ;
+; Total number of inverted registers = 11 ;         ;
 +-----------------------------------------+---------+
 
 
@@ -280,38 +306,56 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output               ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------+
-; 256:1              ; 8 bits    ; 1360 LEs      ; 16 LEs               ; 1344 LEs               ; Yes        ; |DE10_LITE_Golden_Top|UART:uart0|step[0] ;
+; 256:1              ; 8 bits    ; 1360 LEs      ; 24 LEs               ; 1336 LEs               ; Yes        ; |DE10_LITE_Golden_Top|UART:uart0|step[0] ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------+
 
 
-+-------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: Prescaler:pres ;
-+----------------+-------+------------------------------------+
-; Parameter Name ; Value ; Type                               ;
-+----------------+-------+------------------------------------+
-; N              ; 4     ; Signed Integer                     ;
-+----------------+-------+------------------------------------+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Prescaler:presA ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; N              ; 4     ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "SevSegController:ssc1"                                                                                                                                                               ;
-+---------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port    ; Type  ; Severity ; Details                                                                                                                                                                            ;
-+---------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; dot     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
-; dot[-1] ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-+---------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Prescaler:presB ;
++----------------+-------+-------------------------------------+
+; Parameter Name ; Value ; Type                                ;
++----------------+-------+-------------------------------------+
+; N              ; 7     ; Signed Integer                      ;
++----------------+-------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "SevSegController:ssc0"                                                                                                                                                               ;
-+---------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port    ; Type  ; Severity ; Details                                                                                                                                                                            ;
-+---------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; dot     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
-; dot[-1] ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-+---------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "UART:uart0|PulseGenerator:pGen|FlipFlopSR:ffSRB"                                    ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Qout ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "UART:uart0|PulseGenerator:pGen|FlipFlopSR:ffSRA"                                     ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                             ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; nQout ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "UART:uart0"                                                                                  ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                             ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; portAvailable ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; pulse         ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -320,23 +364,23 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 145                         ;
-; cycloneiii_ff         ; 38                          ;
-;     ENA               ; 8                           ;
-;     plain             ; 30                          ;
+; cycloneiii_ff         ; 42                          ;
+;     ENA               ; 24                          ;
+;     plain             ; 18                          ;
 ; cycloneiii_io_obuf    ; 55                          ;
-; cycloneiii_lcell_comb ; 77                          ;
-;     arith             ; 14                          ;
-;         2 data inputs ; 7                           ;
-;         3 data inputs ; 7                           ;
-;     normal            ; 63                          ;
-;         0 data inputs ; 2                           ;
-;         1 data inputs ; 8                           ;
-;         2 data inputs ; 3                           ;
-;         3 data inputs ; 5                           ;
-;         4 data inputs ; 45                          ;
+; cycloneiii_lcell_comb ; 102                         ;
+;     arith             ; 19                          ;
+;         2 data inputs ; 11                          ;
+;         3 data inputs ; 8                           ;
+;     normal            ; 83                          ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 10                          ;
+;         2 data inputs ; 5                           ;
+;         3 data inputs ; 16                          ;
+;         4 data inputs ; 51                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 6.00                        ;
-; Average LUT depth     ; 2.18                        ;
+; Max LUT depth         ; 8.00                        ;
+; Average LUT depth     ; 2.68                        ;
 +-----------------------+-----------------------------+
 
 
@@ -355,10 +399,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Thu Mar 24 21:58:10 2022
+    Info: Processing started: Thu Mar 31 22:37:35 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Serial_Comm -c 7SegController
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file flipflopsr.v
+    Info (12023): Found entity 1: FlipFlopSR File: D:/Projects/DE10_lite_Serial_Comm/src/FlipFlopSR.v Line: 6
+Info (12021): Found 1 design units, including 1 entities, in source file pulsegenerator.v
+    Info (12023): Found entity 1: PulseGenerator File: D:/Projects/DE10_lite_Serial_Comm/src/PulseGenerator.v Line: 6
 Info (12021): Found 1 design units, including 1 entities, in source file uart.v
     Info (12023): Found entity 1: UART File: D:/Projects/DE10_lite_Serial_Comm/src/UART.v Line: 6
 Info (12021): Found 1 design units, including 1 entities, in source file de10_lite_golden_top.v
@@ -368,7 +416,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file sevsegc
 Info (12021): Found 1 design units, including 1 entities, in source file prescaler.v
     Info (12023): Found entity 1: Prescaler File: D:/Projects/DE10_lite_Serial_Comm/src/Prescaler.v Line: 6
 Info (12127): Elaborating entity "DE10_LITE_Golden_Top" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at DE10_LITE_Golden_Top.v(168): truncated value with size 32 to match size of target (8) File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 168
+Warning (10230): Verilog HDL assignment warning at DE10_LITE_Golden_Top.v(171): truncated value with size 32 to match size of target (8) File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 171
+Warning (10230): Verilog HDL assignment warning at DE10_LITE_Golden_Top.v(175): truncated value with size 32 to match size of target (8) File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 175
 Warning (10034): Output port "HEX2" at DE10_LITE_Golden_Top.v(67) has no driver File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 67
 Warning (10034): Output port "HEX3" at DE10_LITE_Golden_Top.v(70) has no driver File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 70
 Warning (10034): Output port "HEX4" at DE10_LITE_Golden_Top.v(73) has no driver File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 73
@@ -381,14 +430,18 @@ Warning (10034): Output port "VGA_HS" at DE10_LITE_Golden_Top.v(98) has no drive
 Warning (10034): Output port "VGA_VS" at DE10_LITE_Golden_Top.v(100) has no driver File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 100
 Warning (10034): Output port "GSENSOR_CS_N" at DE10_LITE_Golden_Top.v(105) has no driver File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 105
 Warning (10034): Output port "GSENSOR_SCLK" at DE10_LITE_Golden_Top.v(107) has no driver File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 107
-Info (12128): Elaborating entity "Prescaler" for hierarchy "Prescaler:pres" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 144
+Info (12128): Elaborating entity "Prescaler" for hierarchy "Prescaler:presA" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 147
 Warning (10230): Verilog HDL assignment warning at Prescaler.v(13): truncated value with size 32 to match size of target (4) File: D:/Projects/DE10_lite_Serial_Comm/src/Prescaler.v Line: 13
-Info (12128): Elaborating entity "SevSegController" for hierarchy "SevSegController:ssc0" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 147
-Info (12128): Elaborating entity "UART" for hierarchy "UART:uart0" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 150
-Warning (10230): Verilog HDL assignment warning at UART.v(31): truncated value with size 32 to match size of target (8) File: D:/Projects/DE10_lite_Serial_Comm/src/UART.v Line: 31
-Warning (10230): Verilog HDL assignment warning at UART.v(46): truncated value with size 32 to match size of target (8) File: D:/Projects/DE10_lite_Serial_Comm/src/UART.v Line: 46
-Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (12128): Elaborating entity "Prescaler" for hierarchy "Prescaler:presB" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 148
+Warning (10230): Verilog HDL assignment warning at Prescaler.v(13): truncated value with size 32 to match size of target (7) File: D:/Projects/DE10_lite_Serial_Comm/src/Prescaler.v Line: 13
+Info (12128): Elaborating entity "SevSegController" for hierarchy "SevSegController:ssc0" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 150
+Info (12128): Elaborating entity "UART" for hierarchy "UART:uart0" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 153
+Warning (10230): Verilog HDL assignment warning at UART.v(38): truncated value with size 32 to match size of target (8) File: D:/Projects/DE10_lite_Serial_Comm/src/UART.v Line: 38
+Warning (10230): Verilog HDL assignment warning at UART.v(57): truncated value with size 32 to match size of target (8) File: D:/Projects/DE10_lite_Serial_Comm/src/UART.v Line: 57
+Info (12128): Elaborating entity "PulseGenerator" for hierarchy "UART:uart0|PulseGenerator:pGen" File: D:/Projects/DE10_lite_Serial_Comm/src/UART.v Line: 15
+Info (12128): Elaborating entity "FlipFlopSR" for hierarchy "UART:uart0|PulseGenerator:pGen|FlipFlopSR:ffSRA" File: D:/Projects/DE10_lite_Serial_Comm/src/PulseGenerator.v Line: 11
 Warning (13034): The following nodes have both tri-state and non-tri-state drivers
+    Warning (13035): Inserted always-enabled tri-state buffer between "ARDUINO_IO[11]" and its non-tri-state driver. File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 114
     Warning (13035): Inserted always-enabled tri-state buffer between "ARDUINO_IO[12]" and its non-tri-state driver. File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 114
     Warning (13035): Inserted always-enabled tri-state buffer between "ARDUINO_IO[13]" and its non-tri-state driver. File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 114
 Warning (13039): The following bidirectional pins have no drivers
@@ -405,7 +458,6 @@ Warning (13039): The following bidirectional pins have no drivers
     Warning (13040): bidirectional pin "ARDUINO_IO[8]" has no driver File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 114
     Warning (13040): bidirectional pin "ARDUINO_IO[9]" has no driver File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 114
     Warning (13040): bidirectional pin "ARDUINO_IO[10]" has no driver File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 114
-    Warning (13040): bidirectional pin "ARDUINO_IO[11]" has no driver File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 114
     Warning (13040): bidirectional pin "ARDUINO_IO[14]" has no driver File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 114
     Warning (13040): bidirectional pin "ARDUINO_IO[15]" has no driver File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 114
     Warning (13040): bidirectional pin "ARDUINO_RESET_N" has no driver File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 115
@@ -446,11 +498,10 @@ Warning (13039): The following bidirectional pins have no drivers
     Warning (13040): bidirectional pin "GPIO[34]" has no driver File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 122
     Warning (13040): bidirectional pin "GPIO[35]" has no driver File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 122
 Warning (13009): TRI or OPNDRN buffers permanently enabled
+    Warning (13010): Node "ARDUINO_IO[11]~synth" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 114
     Warning (13010): Node "ARDUINO_IO[12]~synth" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 114
     Warning (13010): Node "ARDUINO_IO[13]~synth" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 114
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "HEX0[7]" is stuck at VCC File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 61
-    Warning (13410): Pin "HEX1[7]" is stuck at VCC File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 64
     Warning (13410): Pin "HEX2[0]" is stuck at GND File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 67
     Warning (13410): Pin "HEX2[1]" is stuck at GND File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 67
     Warning (13410): Pin "HEX2[2]" is stuck at GND File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 67
@@ -513,9 +564,8 @@ Info (286030): Timing-Driven Synthesis is running
 Info (144001): Generated suppressed messages file D:/Projects/DE10_lite_Serial_Comm/src/output_files/7SegController.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 15 input pin(s) that do not drive logic
+Warning (21074): Design contains 14 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "ADC_CLK_10" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 33
-    Warning (15610): No output dependent on input pin "KEY[0]" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 81
     Warning (15610): No output dependent on input pin "KEY[1]" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 81
     Warning (15610): No output dependent on input pin "SW[0]" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 91
     Warning (15610): No output dependent on input pin "SW[1]" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 91
@@ -529,15 +579,15 @@ Warning (21074): Design contains 15 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[9]" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 91
     Warning (15610): No output dependent on input pin "GSENSOR_INT[1]" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 106
     Warning (15610): No output dependent on input pin "GSENSOR_INT[2]" File: D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v Line: 106
-Info (21057): Implemented 232 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 256 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 16 input pins
     Info (21059): Implemented 74 output pins
     Info (21060): Implemented 55 bidirectional pins
-    Info (21061): Implemented 87 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 155 warnings
-    Info: Peak virtual memory: 4838 megabytes
-    Info: Processing ended: Thu Mar 24 21:58:17 2022
-    Info: Elapsed time: 00:00:07
+    Info (21061): Implemented 111 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 154 warnings
+    Info: Peak virtual memory: 4839 megabytes
+    Info: Processing ended: Thu Mar 31 22:37:43 2022
+    Info: Elapsed time: 00:00:08
     Info: Total CPU time (on all processors): 00:00:17
 
 

@@ -1,0 +1,24 @@
+Quartus Prime Archive log --	D:/Projects/DE10_lite_Serial_Comm/src/Serial_Comm_tmp_archive.qarlog
+
+Archive:	D:/Projects/DE10_lite_Serial_Comm/src/Serial_Comm_tmp_archive.qar
+Date:		Thu Mar 31 18:53:16 2022
+Quartus Prime		20.1.1 Build 720 11/11/2020 SJ Lite Edition
+
+	=========== Files Selected: ===========
+D:/Projects/DE10_lite_Serial_Comm/src/7SegController.qsf
+D:/Projects/DE10_lite_Serial_Comm/src/7SegController_assignment_defaults.qdf
+D:/Projects/DE10_lite_Serial_Comm/src/DE10_LITE_Golden_Top.v
+D:/Projects/DE10_lite_Serial_Comm/src/Prescaler.v
+D:/Projects/DE10_lite_Serial_Comm/src/Serial_Comm.qpf
+D:/Projects/DE10_lite_Serial_Comm/src/SevSegController.v
+D:/Projects/DE10_lite_Serial_Comm/src/UART.v
+	======= Total: 7 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.
+
+
+******* Archived project restoration attempt on Thu Mar 31 18:53:19 2022
+Source archive file:	D:/Projects/DE10_lite_Serial_Comm/src/Serial_Comm_tmp_archive.qar
+Archive was extracted into	D:/Projects/pulse-generator-verilog/src/
+		 - successfully.

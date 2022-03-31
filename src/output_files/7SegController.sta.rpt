@@ -1,5 +1,5 @@
 Timing Analyzer report for 7SegController
-Thu Mar 24 21:58:34 2022
+Thu Mar 31 22:38:00 2022
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -42,9 +42,11 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
  34. Report RSKM
  35. Unconstrained Paths Summary
  36. Clock Status Summary
- 37. Unconstrained Output Ports
+ 37. Unconstrained Input Ports
  38. Unconstrained Output Ports
- 39. Timing Analyzer Messages
+ 39. Unconstrained Input Ports
+ 40. Unconstrained Output Ports
+ 41. Timing Analyzer Messages
 
 
 
@@ -90,59 +92,59 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 16          ;
 ; Maximum allowed            ; 16          ;
 ;                            ;             ;
-; Average used               ; 1.10        ;
+; Average used               ; 1.18        ;
 ; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.6%      ;
-;     Processors 3-16        ;   0.6%      ;
+;     Processor 2            ;   1.3%      ;
+;     Processors 3-16        ;   1.2%      ;
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Clocks                                                                                                                                                                                                           ;
-+-------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+-----------------------------+
-; Clock Name              ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets                     ;
-+-------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+-----------------------------+
-; MAX10_CLK1_50           ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { MAX10_CLK1_50 }           ;
-; Prescaler:pres|count[3] ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { Prescaler:pres|count[3] } ;
-; UART:uart0|pAvailable   ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { UART:uart0|pAvailable }   ;
-+-------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+-----------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                                                             ;
++--------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+------------------------------+
+; Clock Name               ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets                      ;
++--------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+------------------------------+
+; MAX10_CLK1_50            ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { MAX10_CLK1_50 }            ;
+; Prescaler:presA|count[3] ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { Prescaler:presA|count[3] } ;
+; Prescaler:presB|count[6] ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { Prescaler:presB|count[6] } ;
++--------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------+
-; Slow 1200mV 85C Model Fmax Summary                                                                                     ;
-+------------+-----------------+-------------------------+---------------------------------------------------------------+
-; Fmax       ; Restricted Fmax ; Clock Name              ; Note                                                          ;
-+------------+-----------------+-------------------------+---------------------------------------------------------------+
-; 242.07 MHz ; 242.07 MHz      ; Prescaler:pres|count[3] ;                                                               ;
-; 416.67 MHz ; 250.0 MHz       ; MAX10_CLK1_50           ; limit due to minimum period restriction (max I/O toggle rate) ;
-; 467.29 MHz ; 450.05 MHz      ; UART:uart0|pAvailable   ; limit due to minimum period restriction (tmin)                ;
-+------------+-----------------+-------------------------+---------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 85C Model Fmax Summary                                                                                      ;
++------------+-----------------+--------------------------+---------------------------------------------------------------+
+; Fmax       ; Restricted Fmax ; Clock Name               ; Note                                                          ;
++------------+-----------------+--------------------------+---------------------------------------------------------------+
+; 183.72 MHz ; 183.72 MHz      ; Prescaler:presA|count[3] ;                                                               ;
+; 356.63 MHz ; 250.0 MHz       ; MAX10_CLK1_50            ; limit due to minimum period restriction (max I/O toggle rate) ;
+; 426.44 MHz ; 426.44 MHz      ; Prescaler:presB|count[6] ;                                                               ;
++------------+-----------------+--------------------------+---------------------------------------------------------------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
++---------------------------------------------------+
+; Slow 1200mV 85C Model Setup Summary               ;
++--------------------------+--------+---------------+
+; Clock                    ; Slack  ; End Point TNS ;
++--------------------------+--------+---------------+
+; Prescaler:presA|count[3] ; -4.910 ; -74.783       ;
+; MAX10_CLK1_50            ; -1.804 ; -5.802        ;
+; Prescaler:presB|count[6] ; -1.345 ; -14.743       ;
++--------------------------+--------+---------------+
+
+
 +--------------------------------------------------+
-; Slow 1200mV 85C Model Setup Summary              ;
-+-------------------------+--------+---------------+
-; Clock                   ; Slack  ; End Point TNS ;
-+-------------------------+--------+---------------+
-; Prescaler:pres|count[3] ; -3.131 ; -44.268       ;
-; MAX10_CLK1_50           ; -1.502 ; -1.655        ;
-; UART:uart0|pAvailable   ; -1.140 ; -6.156        ;
-+-------------------------+--------+---------------+
-
-
-+-------------------------------------------------+
-; Slow 1200mV 85C Model Hold Summary              ;
-+-------------------------+-------+---------------+
-; Clock                   ; Slack ; End Point TNS ;
-+-------------------------+-------+---------------+
-; MAX10_CLK1_50           ; 0.325 ; 0.000         ;
-; UART:uart0|pAvailable   ; 0.534 ; 0.000         ;
-; Prescaler:pres|count[3] ; 0.658 ; 0.000         ;
-+-------------------------+-------+---------------+
+; Slow 1200mV 85C Model Hold Summary               ;
++--------------------------+-------+---------------+
+; Clock                    ; Slack ; End Point TNS ;
++--------------------------+-------+---------------+
+; Prescaler:presA|count[3] ; 0.246 ; 0.000         ;
+; MAX10_CLK1_50            ; 0.344 ; 0.000         ;
+; Prescaler:presB|count[6] ; 0.344 ; 0.000         ;
++--------------------------+-------+---------------+
 
 
 ------------------------------------------
@@ -159,13 +161,13 @@ No paths to report.
 
 +---------------------------------------------------+
 ; Slow 1200mV 85C Model Minimum Pulse Width Summary ;
-+-------------------------+--------+----------------+
-; Clock                   ; Slack  ; End Point TNS  ;
-+-------------------------+--------+----------------+
-; MAX10_CLK1_50           ; -3.000 ; -7.888         ;
-; Prescaler:pres|count[3] ; -1.222 ; -31.772        ;
-; UART:uart0|pAvailable   ; -1.222 ; -9.776         ;
-+-------------------------+--------+----------------+
++--------------------------+--------+---------------+
+; Clock                    ; Slack  ; End Point TNS ;
++--------------------------+--------+---------------+
+; MAX10_CLK1_50            ; -3.000 ; -12.776       ;
+; Prescaler:presA|count[3] ; -1.222 ; -20.774       ;
+; Prescaler:presB|count[6] ; -1.222 ; -20.774       ;
++--------------------------+--------+---------------+
 
 
 -----------------------------------------------
@@ -174,38 +176,38 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+------------------------------------------------------------------------------------------------------------------------+
-; Slow 1200mV 0C Model Fmax Summary                                                                                      ;
-+------------+-----------------+-------------------------+---------------------------------------------------------------+
-; Fmax       ; Restricted Fmax ; Clock Name              ; Note                                                          ;
-+------------+-----------------+-------------------------+---------------------------------------------------------------+
-; 263.09 MHz ; 263.09 MHz      ; Prescaler:pres|count[3] ;                                                               ;
-; 451.88 MHz ; 250.0 MHz       ; MAX10_CLK1_50           ; limit due to minimum period restriction (max I/O toggle rate) ;
-; 513.87 MHz ; 450.05 MHz      ; UART:uart0|pAvailable   ; limit due to minimum period restriction (tmin)                ;
-+------------+-----------------+-------------------------+---------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------+
+; Slow 1200mV 0C Model Fmax Summary                                                                                       ;
++------------+-----------------+--------------------------+---------------------------------------------------------------+
+; Fmax       ; Restricted Fmax ; Clock Name               ; Note                                                          ;
++------------+-----------------+--------------------------+---------------------------------------------------------------+
+; 202.18 MHz ; 202.18 MHz      ; Prescaler:presA|count[3] ;                                                               ;
+; 388.2 MHz  ; 250.0 MHz       ; MAX10_CLK1_50            ; limit due to minimum period restriction (max I/O toggle rate) ;
+; 473.93 MHz ; 450.05 MHz      ; Prescaler:presB|count[6] ; limit due to minimum period restriction (tmin)                ;
++------------+-----------------+--------------------------+---------------------------------------------------------------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
++---------------------------------------------------+
+; Slow 1200mV 0C Model Setup Summary                ;
++--------------------------+--------+---------------+
+; Clock                    ; Slack  ; End Point TNS ;
++--------------------------+--------+---------------+
+; Prescaler:presA|count[3] ; -4.401 ; -66.800       ;
+; MAX10_CLK1_50            ; -1.576 ; -4.668        ;
+; Prescaler:presB|count[6] ; -1.110 ; -11.960       ;
++--------------------------+--------+---------------+
+
+
 +--------------------------------------------------+
-; Slow 1200mV 0C Model Setup Summary               ;
-+-------------------------+--------+---------------+
-; Clock                   ; Slack  ; End Point TNS ;
-+-------------------------+--------+---------------+
-; Prescaler:pres|count[3] ; -2.801 ; -38.345       ;
-; MAX10_CLK1_50           ; -1.224 ; -1.275        ;
-; UART:uart0|pAvailable   ; -0.946 ; -4.901        ;
-+-------------------------+--------+---------------+
-
-
-+-------------------------------------------------+
-; Slow 1200mV 0C Model Hold Summary               ;
-+-------------------------+-------+---------------+
-; Clock                   ; Slack ; End Point TNS ;
-+-------------------------+-------+---------------+
-; MAX10_CLK1_50           ; 0.294 ; 0.000         ;
-; UART:uart0|pAvailable   ; 0.496 ; 0.000         ;
-; Prescaler:pres|count[3] ; 0.625 ; 0.000         ;
-+-------------------------+-------+---------------+
+; Slow 1200mV 0C Model Hold Summary                ;
++--------------------------+-------+---------------+
+; Clock                    ; Slack ; End Point TNS ;
++--------------------------+-------+---------------+
+; Prescaler:presA|count[3] ; 0.170 ; 0.000         ;
+; MAX10_CLK1_50            ; 0.313 ; 0.000         ;
+; Prescaler:presB|count[6] ; 0.313 ; 0.000         ;
++--------------------------+-------+---------------+
 
 
 -----------------------------------------
@@ -220,15 +222,15 @@ No paths to report.
 No paths to report.
 
 
-+--------------------------------------------------+
-; Slow 1200mV 0C Model Minimum Pulse Width Summary ;
-+-------------------------+--------+---------------+
-; Clock                   ; Slack  ; End Point TNS ;
-+-------------------------+--------+---------------+
-; MAX10_CLK1_50           ; -3.000 ; -7.888        ;
-; Prescaler:pres|count[3] ; -1.222 ; -31.772       ;
-; UART:uart0|pAvailable   ; -1.222 ; -9.776        ;
-+-------------------------+--------+---------------+
++---------------------------------------------------+
+; Slow 1200mV 0C Model Minimum Pulse Width Summary  ;
++--------------------------+--------+---------------+
+; Clock                    ; Slack  ; End Point TNS ;
++--------------------------+--------+---------------+
+; MAX10_CLK1_50            ; -3.000 ; -12.776       ;
+; Prescaler:presA|count[3] ; -1.222 ; -20.774       ;
+; Prescaler:presB|count[6] ; -1.222 ; -20.774       ;
++--------------------------+--------+---------------+
 
 
 ----------------------------------------------
@@ -237,26 +239,26 @@ No paths to report.
 No synchronizer chains to report.
 
 
++---------------------------------------------------+
+; Fast 1200mV 0C Model Setup Summary                ;
++--------------------------+--------+---------------+
+; Clock                    ; Slack  ; End Point TNS ;
++--------------------------+--------+---------------+
+; Prescaler:presA|count[3] ; -1.860 ; -27.622       ;
+; MAX10_CLK1_50            ; -0.672 ; -1.319        ;
+; Prescaler:presB|count[6] ; -0.145 ; -0.429        ;
++--------------------------+--------+---------------+
+
+
 +--------------------------------------------------+
-; Fast 1200mV 0C Model Setup Summary               ;
-+-------------------------+--------+---------------+
-; Clock                   ; Slack  ; End Point TNS ;
-+-------------------------+--------+---------------+
-; Prescaler:pres|count[3] ; -0.984 ; -8.108        ;
-; MAX10_CLK1_50           ; -0.614 ; -0.614        ;
-; UART:uart0|pAvailable   ; -0.004 ; -0.004        ;
-+-------------------------+--------+---------------+
-
-
-+-------------------------------------------------+
-; Fast 1200mV 0C Model Hold Summary               ;
-+-------------------------+-------+---------------+
-; Clock                   ; Slack ; End Point TNS ;
-+-------------------------+-------+---------------+
-; Prescaler:pres|count[3] ; 0.144 ; 0.000         ;
-; MAX10_CLK1_50           ; 0.148 ; 0.000         ;
-; UART:uart0|pAvailable   ; 0.238 ; 0.000         ;
-+-------------------------+-------+---------------+
+; Fast 1200mV 0C Model Hold Summary                ;
++--------------------------+-------+---------------+
+; Clock                    ; Slack ; End Point TNS ;
++--------------------------+-------+---------------+
+; Prescaler:presA|count[3] ; 0.001 ; 0.000         ;
+; MAX10_CLK1_50            ; 0.157 ; 0.000         ;
+; Prescaler:presB|count[6] ; 0.157 ; 0.000         ;
++--------------------------+-------+---------------+
 
 
 -----------------------------------------
@@ -271,15 +273,15 @@ No paths to report.
 No paths to report.
 
 
-+--------------------------------------------------+
-; Fast 1200mV 0C Model Minimum Pulse Width Summary ;
-+-------------------------+--------+---------------+
-; Clock                   ; Slack  ; End Point TNS ;
-+-------------------------+--------+---------------+
-; MAX10_CLK1_50           ; -3.000 ; -7.688        ;
-; Prescaler:pres|count[3] ; -1.000 ; -26.000       ;
-; UART:uart0|pAvailable   ; -1.000 ; -8.000        ;
-+-------------------------+--------+---------------+
++---------------------------------------------------+
+; Fast 1200mV 0C Model Minimum Pulse Width Summary  ;
++--------------------------+--------+---------------+
+; Clock                    ; Slack  ; End Point TNS ;
++--------------------------+--------+---------------+
+; MAX10_CLK1_50            ; -3.000 ; -12.360       ;
+; Prescaler:presA|count[3] ; -1.000 ; -17.000       ;
+; Prescaler:presB|count[6] ; -1.000 ; -17.000       ;
++--------------------------+--------+---------------+
 
 
 ----------------------------------------------
@@ -288,20 +290,20 @@ No paths to report.
 No synchronizer chains to report.
 
 
-+---------------------------------------------------------------------------------------+
-; Multicorner Timing Analysis Summary                                                   ;
-+--------------------------+---------+-------+----------+---------+---------------------+
-; Clock                    ; Setup   ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
-+--------------------------+---------+-------+----------+---------+---------------------+
-; Worst-case Slack         ; -3.131  ; 0.144 ; N/A      ; N/A     ; -3.000              ;
-;  MAX10_CLK1_50           ; -1.502  ; 0.148 ; N/A      ; N/A     ; -3.000              ;
-;  Prescaler:pres|count[3] ; -3.131  ; 0.144 ; N/A      ; N/A     ; -1.222              ;
-;  UART:uart0|pAvailable   ; -1.140  ; 0.238 ; N/A      ; N/A     ; -1.222              ;
-; Design-wide TNS          ; -52.079 ; 0.0   ; 0.0      ; 0.0     ; -49.436             ;
-;  MAX10_CLK1_50           ; -1.655  ; 0.000 ; N/A      ; N/A     ; -7.888              ;
-;  Prescaler:pres|count[3] ; -44.268 ; 0.000 ; N/A      ; N/A     ; -31.772             ;
-;  UART:uart0|pAvailable   ; -6.156  ; 0.000 ; N/A      ; N/A     ; -9.776              ;
-+--------------------------+---------+-------+----------+---------+---------------------+
++----------------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                                    ;
++---------------------------+---------+-------+----------+---------+---------------------+
+; Clock                     ; Setup   ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
++---------------------------+---------+-------+----------+---------+---------------------+
+; Worst-case Slack          ; -4.910  ; 0.001 ; N/A      ; N/A     ; -3.000              ;
+;  MAX10_CLK1_50            ; -1.804  ; 0.157 ; N/A      ; N/A     ; -3.000              ;
+;  Prescaler:presA|count[3] ; -4.910  ; 0.001 ; N/A      ; N/A     ; -1.222              ;
+;  Prescaler:presB|count[6] ; -1.345  ; 0.157 ; N/A      ; N/A     ; -1.222              ;
+; Design-wide TNS           ; -95.328 ; 0.0   ; 0.0      ; 0.0     ; -54.324             ;
+;  MAX10_CLK1_50            ; -5.802  ; 0.000 ; N/A      ; N/A     ; -12.776             ;
+;  Prescaler:presA|count[3] ; -74.783 ; 0.000 ; N/A      ; N/A     ; -20.774             ;
+;  Prescaler:presB|count[6] ; -14.743 ; 0.000 ; N/A      ; N/A     ; -20.774             ;
++---------------------------+---------+-------+----------+---------+---------------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -396,7 +398,6 @@ No synchronizer chains to report.
 ; ARDUINO_IO[8]   ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; ARDUINO_IO[9]   ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; ARDUINO_IO[10]  ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; ARDUINO_IO[11]  ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; ARDUINO_IO[14]  ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; ARDUINO_IO[15]  ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; ARDUINO_RESET_N ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
@@ -436,6 +437,7 @@ No synchronizer chains to report.
 ; GPIO[33]        ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; GPIO[34]        ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; GPIO[35]        ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; ARDUINO_IO[11]  ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; ARDUINO_IO[12]  ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; ARDUINO_IO[13]  ; 3.3-V LVTTL  ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; ~ALTERA_TDO~    ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
@@ -448,7 +450,6 @@ No synchronizer chains to report.
 ; Pin                 ; I/O Standard          ; 10-90 Rise Time ; 90-10 Fall Time ;
 +---------------------+-----------------------+-----------------+-----------------+
 ; ADC_CLK_10          ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
-; KEY[0]              ; 3.3 V Schmitt Trigger ; 2640 ps         ; 2640 ps         ;
 ; KEY[1]              ; 3.3 V Schmitt Trigger ; 2640 ps         ; 2640 ps         ;
 ; SW[0]               ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; SW[1]               ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
@@ -475,7 +476,6 @@ No synchronizer chains to report.
 ; ARDUINO_IO[8]       ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; ARDUINO_IO[9]       ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; ARDUINO_IO[10]      ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
-; ARDUINO_IO[11]      ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; ARDUINO_IO[14]      ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; ARDUINO_IO[15]      ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; ARDUINO_RESET_N     ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
@@ -515,8 +515,10 @@ No synchronizer chains to report.
 ; GPIO[33]            ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; GPIO[34]            ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; GPIO[35]            ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
+; ARDUINO_IO[11]      ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; ARDUINO_IO[12]      ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; ARDUINO_IO[13]      ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
+; KEY[0]              ; 3.3 V Schmitt Trigger ; 2640 ps         ; 2640 ps         ;
 ; MAX10_CLK1_50       ; 3.3-V LVTTL           ; 2640 ps         ; 2640 ps         ;
 ; ~ALTERA_TMS~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_TCK~        ; 2.5 V Schmitt Trigger ; 2000 ps         ; 2000 ps         ;
@@ -620,7 +622,6 @@ No synchronizer chains to report.
 ; ARDUINO_IO[8]   ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.27e-08 V                   ; 3.23 V              ; -0.106 V            ; 0.46 V                               ; 0.281 V                              ; 3.06e-10 s                  ; 4.34e-10 s                  ; No                         ; Yes                        ; 3.08 V                      ; 5.27e-08 V                  ; 3.23 V             ; -0.106 V           ; 0.46 V                              ; 0.281 V                             ; 3.06e-10 s                 ; 4.34e-10 s                 ; No                        ; Yes                       ;
 ; ARDUINO_IO[9]   ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.27e-08 V                   ; 3.22 V              ; -0.0937 V           ; 0.265 V                              ; 0.351 V                              ; 4.55e-10 s                  ; 4.64e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 5.27e-08 V                  ; 3.22 V             ; -0.0937 V          ; 0.265 V                             ; 0.351 V                             ; 4.55e-10 s                 ; 4.64e-10 s                 ; No                        ; No                        ;
 ; ARDUINO_IO[10]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.27e-08 V                   ; 3.23 V              ; -0.106 V            ; 0.46 V                               ; 0.281 V                              ; 3.06e-10 s                  ; 4.34e-10 s                  ; No                         ; Yes                        ; 3.08 V                      ; 5.27e-08 V                  ; 3.23 V             ; -0.106 V           ; 0.46 V                              ; 0.281 V                             ; 3.06e-10 s                 ; 4.34e-10 s                 ; No                        ; Yes                       ;
-; ARDUINO_IO[11]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.27e-08 V                   ; 3.23 V              ; -0.106 V            ; 0.46 V                               ; 0.281 V                              ; 3.06e-10 s                  ; 4.34e-10 s                  ; No                         ; Yes                        ; 3.08 V                      ; 5.27e-08 V                  ; 3.23 V             ; -0.106 V           ; 0.46 V                              ; 0.281 V                             ; 3.06e-10 s                 ; 4.34e-10 s                 ; No                        ; Yes                       ;
 ; ARDUINO_IO[14]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.27e-08 V                   ; 3.23 V              ; -0.106 V            ; 0.46 V                               ; 0.281 V                              ; 3.06e-10 s                  ; 4.34e-10 s                  ; No                         ; Yes                        ; 3.08 V                      ; 5.27e-08 V                  ; 3.23 V             ; -0.106 V           ; 0.46 V                              ; 0.281 V                             ; 3.06e-10 s                 ; 4.34e-10 s                 ; No                        ; Yes                       ;
 ; ARDUINO_IO[15]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.27e-08 V                   ; 3.23 V              ; -0.107 V            ; 0.46 V                               ; 0.279 V                              ; 3.06e-10 s                  ; 4.34e-10 s                  ; No                         ; Yes                        ; 3.08 V                      ; 5.27e-08 V                  ; 3.23 V             ; -0.107 V           ; 0.46 V                              ; 0.279 V                             ; 3.06e-10 s                 ; 4.34e-10 s                 ; No                        ; Yes                       ;
 ; ARDUINO_RESET_N ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.27e-08 V                   ; 3.23 V              ; -0.107 V            ; 0.46 V                               ; 0.279 V                              ; 3.06e-10 s                  ; 4.34e-10 s                  ; No                         ; Yes                        ; 3.08 V                      ; 5.27e-08 V                  ; 3.23 V             ; -0.107 V           ; 0.46 V                              ; 0.279 V                             ; 3.06e-10 s                 ; 4.34e-10 s                 ; No                        ; Yes                       ;
@@ -660,6 +661,7 @@ No synchronizer chains to report.
 ; GPIO[33]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.27e-08 V                   ; 3.23 V              ; -0.106 V            ; 0.46 V                               ; 0.281 V                              ; 3.06e-10 s                  ; 4.34e-10 s                  ; No                         ; Yes                        ; 3.08 V                      ; 5.27e-08 V                  ; 3.23 V             ; -0.106 V           ; 0.46 V                              ; 0.281 V                             ; 3.06e-10 s                 ; 4.34e-10 s                 ; No                        ; Yes                       ;
 ; GPIO[34]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.27e-08 V                   ; 3.23 V              ; -0.106 V            ; 0.46 V                               ; 0.281 V                              ; 3.06e-10 s                  ; 4.34e-10 s                  ; No                         ; Yes                        ; 3.08 V                      ; 5.27e-08 V                  ; 3.23 V             ; -0.106 V           ; 0.46 V                              ; 0.281 V                             ; 3.06e-10 s                 ; 4.34e-10 s                 ; No                        ; Yes                       ;
 ; GPIO[35]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.27e-08 V                   ; 3.23 V              ; -0.107 V            ; 0.46 V                               ; 0.279 V                              ; 3.06e-10 s                  ; 4.34e-10 s                  ; No                         ; Yes                        ; 3.08 V                      ; 5.27e-08 V                  ; 3.23 V             ; -0.107 V           ; 0.46 V                              ; 0.279 V                             ; 3.06e-10 s                 ; 4.34e-10 s                 ; No                        ; Yes                       ;
+; ARDUINO_IO[11]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.27e-08 V                   ; 3.23 V              ; -0.106 V            ; 0.46 V                               ; 0.281 V                              ; 3.06e-10 s                  ; 4.34e-10 s                  ; No                         ; Yes                        ; 3.08 V                      ; 5.27e-08 V                  ; 3.23 V             ; -0.106 V           ; 0.46 V                              ; 0.281 V                             ; 3.06e-10 s                 ; 4.34e-10 s                 ; No                        ; Yes                       ;
 ; ARDUINO_IO[12]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.27e-08 V                   ; 3.22 V              ; -0.0937 V           ; 0.265 V                              ; 0.351 V                              ; 4.55e-10 s                  ; 4.64e-10 s                  ; No                         ; No                         ; 3.08 V                      ; 5.27e-08 V                  ; 3.22 V             ; -0.0937 V          ; 0.265 V                             ; 0.351 V                             ; 4.55e-10 s                 ; 4.64e-10 s                 ; No                        ; No                        ;
 ; ARDUINO_IO[13]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.27e-08 V                   ; 3.23 V              ; -0.107 V            ; 0.46 V                               ; 0.279 V                              ; 3.06e-10 s                  ; 4.34e-10 s                  ; No                         ; Yes                        ; 3.08 V                      ; 5.27e-08 V                  ; 3.23 V             ; -0.107 V           ; 0.46 V                              ; 0.279 V                             ; 3.06e-10 s                 ; 4.34e-10 s                 ; No                        ; Yes                       ;
 ; ~ALTERA_TDO~    ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 1.97e-08 V                   ; 2.4 V               ; -0.023 V            ; 0.201 V                              ; 0.081 V                              ; 4.59e-10 s                  ; 5.51e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 1.97e-08 V                  ; 2.4 V              ; -0.023 V           ; 0.201 V                             ; 0.081 V                             ; 4.59e-10 s                 ; 5.51e-10 s                 ; No                        ; Yes                       ;
@@ -758,7 +760,6 @@ No synchronizer chains to report.
 ; ARDUINO_IO[8]   ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.35e-06 V                   ; 3.17 V              ; -0.0587 V           ; 0.248 V                              ; 0.173 V                              ; 4.61e-10 s                  ; 6e-10 s                     ; No                         ; No                         ; 3.08 V                      ; 5.35e-06 V                  ; 3.17 V             ; -0.0587 V          ; 0.248 V                             ; 0.173 V                             ; 4.61e-10 s                 ; 6e-10 s                    ; No                        ; No                        ;
 ; ARDUINO_IO[9]   ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.35e-06 V                   ; 3.17 V              ; -0.0535 V           ; 0.313 V                              ; 0.225 V                              ; 4.84e-10 s                  ; 6.28e-10 s                  ; No                         ; Yes                        ; 3.08 V                      ; 5.35e-06 V                  ; 3.17 V             ; -0.0535 V          ; 0.313 V                             ; 0.225 V                             ; 4.84e-10 s                 ; 6.28e-10 s                 ; No                        ; Yes                       ;
 ; ARDUINO_IO[10]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.35e-06 V                   ; 3.17 V              ; -0.0587 V           ; 0.248 V                              ; 0.173 V                              ; 4.61e-10 s                  ; 6e-10 s                     ; No                         ; No                         ; 3.08 V                      ; 5.35e-06 V                  ; 3.17 V             ; -0.0587 V          ; 0.248 V                             ; 0.173 V                             ; 4.61e-10 s                 ; 6e-10 s                    ; No                        ; No                        ;
-; ARDUINO_IO[11]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.35e-06 V                   ; 3.17 V              ; -0.0587 V           ; 0.248 V                              ; 0.173 V                              ; 4.61e-10 s                  ; 6e-10 s                     ; No                         ; No                         ; 3.08 V                      ; 5.35e-06 V                  ; 3.17 V             ; -0.0587 V          ; 0.248 V                             ; 0.173 V                             ; 4.61e-10 s                 ; 6e-10 s                    ; No                        ; No                        ;
 ; ARDUINO_IO[14]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.35e-06 V                   ; 3.17 V              ; -0.0587 V           ; 0.248 V                              ; 0.173 V                              ; 4.61e-10 s                  ; 6e-10 s                     ; No                         ; No                         ; 3.08 V                      ; 5.35e-06 V                  ; 3.17 V             ; -0.0587 V          ; 0.248 V                             ; 0.173 V                             ; 4.61e-10 s                 ; 6e-10 s                    ; No                        ; No                        ;
 ; ARDUINO_IO[15]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.35e-06 V                   ; 3.17 V              ; -0.0592 V           ; 0.248 V                              ; 0.172 V                              ; 4.61e-10 s                  ; 6e-10 s                     ; No                         ; No                         ; 3.08 V                      ; 5.35e-06 V                  ; 3.17 V             ; -0.0592 V          ; 0.248 V                             ; 0.172 V                             ; 4.61e-10 s                 ; 6e-10 s                    ; No                        ; No                        ;
 ; ARDUINO_RESET_N ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.35e-06 V                   ; 3.17 V              ; -0.0592 V           ; 0.248 V                              ; 0.172 V                              ; 4.61e-10 s                  ; 6e-10 s                     ; No                         ; No                         ; 3.08 V                      ; 5.35e-06 V                  ; 3.17 V             ; -0.0592 V          ; 0.248 V                             ; 0.172 V                             ; 4.61e-10 s                 ; 6e-10 s                    ; No                        ; No                        ;
@@ -798,6 +799,7 @@ No synchronizer chains to report.
 ; GPIO[33]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.35e-06 V                   ; 3.17 V              ; -0.0587 V           ; 0.248 V                              ; 0.173 V                              ; 4.61e-10 s                  ; 6e-10 s                     ; No                         ; No                         ; 3.08 V                      ; 5.35e-06 V                  ; 3.17 V             ; -0.0587 V          ; 0.248 V                             ; 0.173 V                             ; 4.61e-10 s                 ; 6e-10 s                    ; No                        ; No                        ;
 ; GPIO[34]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.35e-06 V                   ; 3.17 V              ; -0.0587 V           ; 0.248 V                              ; 0.173 V                              ; 4.61e-10 s                  ; 6e-10 s                     ; No                         ; No                         ; 3.08 V                      ; 5.35e-06 V                  ; 3.17 V             ; -0.0587 V          ; 0.248 V                             ; 0.173 V                             ; 4.61e-10 s                 ; 6e-10 s                    ; No                        ; No                        ;
 ; GPIO[35]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.35e-06 V                   ; 3.17 V              ; -0.0592 V           ; 0.248 V                              ; 0.172 V                              ; 4.61e-10 s                  ; 6e-10 s                     ; No                         ; No                         ; 3.08 V                      ; 5.35e-06 V                  ; 3.17 V             ; -0.0592 V          ; 0.248 V                             ; 0.172 V                             ; 4.61e-10 s                 ; 6e-10 s                    ; No                        ; No                        ;
+; ARDUINO_IO[11]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.35e-06 V                   ; 3.17 V              ; -0.0587 V           ; 0.248 V                              ; 0.173 V                              ; 4.61e-10 s                  ; 6e-10 s                     ; No                         ; No                         ; 3.08 V                      ; 5.35e-06 V                  ; 3.17 V             ; -0.0587 V          ; 0.248 V                             ; 0.173 V                             ; 4.61e-10 s                 ; 6e-10 s                    ; No                        ; No                        ;
 ; ARDUINO_IO[12]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.35e-06 V                   ; 3.17 V              ; -0.0535 V           ; 0.313 V                              ; 0.225 V                              ; 4.84e-10 s                  ; 6.28e-10 s                  ; No                         ; Yes                        ; 3.08 V                      ; 5.35e-06 V                  ; 3.17 V             ; -0.0535 V          ; 0.313 V                             ; 0.225 V                             ; 4.84e-10 s                 ; 6.28e-10 s                 ; No                        ; Yes                       ;
 ; ARDUINO_IO[13]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.08 V                       ; 5.35e-06 V                   ; 3.17 V              ; -0.0592 V           ; 0.248 V                              ; 0.172 V                              ; 4.61e-10 s                  ; 6e-10 s                     ; No                         ; No                         ; 3.08 V                      ; 5.35e-06 V                  ; 3.17 V             ; -0.0592 V          ; 0.248 V                             ; 0.172 V                             ; 4.61e-10 s                 ; 6e-10 s                    ; No                        ; No                        ;
 ; ~ALTERA_TDO~    ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.04e-06 V                   ; 2.37 V              ; -0.0108 V           ; 0.13 V                               ; 0.066 V                              ; 6.32e-10 s                  ; 6.45e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.04e-06 V                  ; 2.37 V             ; -0.0108 V          ; 0.13 V                              ; 0.066 V                             ; 6.32e-10 s                 ; 6.45e-10 s                 ; No                        ; Yes                       ;
@@ -896,7 +898,6 @@ No synchronizer chains to report.
 ; ARDUINO_IO[8]   ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 5.04e-07 V                   ; 3.65 V              ; -0.0209 V           ; 0.391 V                              ; 0.09 V                               ; 2.79e-10 s                  ; 3.95e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 5.04e-07 V                  ; 3.65 V             ; -0.0209 V          ; 0.391 V                             ; 0.09 V                              ; 2.79e-10 s                 ; 3.95e-10 s                 ; No                        ; Yes                       ;
 ; ARDUINO_IO[9]   ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 5.04e-07 V                   ; 3.63 V              ; -0.0257 V           ; 0.468 V                              ; 0.138 V                              ; 3.02e-10 s                  ; 4.44e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 5.04e-07 V                  ; 3.63 V             ; -0.0257 V          ; 0.468 V                             ; 0.138 V                             ; 3.02e-10 s                 ; 4.44e-10 s                 ; No                        ; Yes                       ;
 ; ARDUINO_IO[10]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 5.04e-07 V                   ; 3.65 V              ; -0.0209 V           ; 0.391 V                              ; 0.09 V                               ; 2.79e-10 s                  ; 3.95e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 5.04e-07 V                  ; 3.65 V             ; -0.0209 V          ; 0.391 V                             ; 0.09 V                              ; 2.79e-10 s                 ; 3.95e-10 s                 ; No                        ; Yes                       ;
-; ARDUINO_IO[11]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 5.04e-07 V                   ; 3.65 V              ; -0.0209 V           ; 0.391 V                              ; 0.09 V                               ; 2.79e-10 s                  ; 3.95e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 5.04e-07 V                  ; 3.65 V             ; -0.0209 V          ; 0.391 V                             ; 0.09 V                              ; 2.79e-10 s                 ; 3.95e-10 s                 ; No                        ; Yes                       ;
 ; ARDUINO_IO[14]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 5.04e-07 V                   ; 3.65 V              ; -0.0209 V           ; 0.391 V                              ; 0.09 V                               ; 2.79e-10 s                  ; 3.95e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 5.04e-07 V                  ; 3.65 V             ; -0.0209 V          ; 0.391 V                             ; 0.09 V                              ; 2.79e-10 s                 ; 3.95e-10 s                 ; No                        ; Yes                       ;
 ; ARDUINO_IO[15]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 5.04e-07 V                   ; 3.64 V              ; -0.0201 V           ; 0.391 V                              ; 0.088 V                              ; 2.79e-10 s                  ; 3.95e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 5.04e-07 V                  ; 3.64 V             ; -0.0201 V          ; 0.391 V                             ; 0.088 V                             ; 2.79e-10 s                 ; 3.95e-10 s                 ; No                        ; Yes                       ;
 ; ARDUINO_RESET_N ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 5.04e-07 V                   ; 3.64 V              ; -0.0201 V           ; 0.391 V                              ; 0.088 V                              ; 2.79e-10 s                  ; 3.95e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 5.04e-07 V                  ; 3.64 V             ; -0.0201 V          ; 0.391 V                             ; 0.088 V                             ; 2.79e-10 s                 ; 3.95e-10 s                 ; No                        ; Yes                       ;
@@ -936,37 +937,40 @@ No synchronizer chains to report.
 ; GPIO[33]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 5.04e-07 V                   ; 3.65 V              ; -0.0209 V           ; 0.391 V                              ; 0.09 V                               ; 2.79e-10 s                  ; 3.95e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 5.04e-07 V                  ; 3.65 V             ; -0.0209 V          ; 0.391 V                             ; 0.09 V                              ; 2.79e-10 s                 ; 3.95e-10 s                 ; No                        ; Yes                       ;
 ; GPIO[34]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 5.04e-07 V                   ; 3.65 V              ; -0.0209 V           ; 0.391 V                              ; 0.09 V                               ; 2.79e-10 s                  ; 3.95e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 5.04e-07 V                  ; 3.65 V             ; -0.0209 V          ; 0.391 V                             ; 0.09 V                              ; 2.79e-10 s                 ; 3.95e-10 s                 ; No                        ; Yes                       ;
 ; GPIO[35]        ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 5.04e-07 V                   ; 3.64 V              ; -0.0201 V           ; 0.391 V                              ; 0.088 V                              ; 2.79e-10 s                  ; 3.95e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 5.04e-07 V                  ; 3.64 V             ; -0.0201 V          ; 0.391 V                             ; 0.088 V                             ; 2.79e-10 s                 ; 3.95e-10 s                 ; No                        ; Yes                       ;
+; ARDUINO_IO[11]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 5.04e-07 V                   ; 3.65 V              ; -0.0209 V           ; 0.391 V                              ; 0.09 V                               ; 2.79e-10 s                  ; 3.95e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 5.04e-07 V                  ; 3.65 V             ; -0.0209 V          ; 0.391 V                             ; 0.09 V                              ; 2.79e-10 s                 ; 3.95e-10 s                 ; No                        ; Yes                       ;
 ; ARDUINO_IO[12]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 5.04e-07 V                   ; 3.63 V              ; -0.0257 V           ; 0.468 V                              ; 0.138 V                              ; 3.02e-10 s                  ; 4.44e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 5.04e-07 V                  ; 3.63 V             ; -0.0257 V          ; 0.468 V                             ; 0.138 V                             ; 3.02e-10 s                 ; 4.44e-10 s                 ; No                        ; Yes                       ;
 ; ARDUINO_IO[13]  ; 3.3-V LVTTL  ; 0 s                 ; 0 s                 ; 3.46 V                       ; 5.04e-07 V                   ; 3.64 V              ; -0.0201 V           ; 0.391 V                              ; 0.088 V                              ; 2.79e-10 s                  ; 3.95e-10 s                  ; No                         ; Yes                        ; 3.46 V                      ; 5.04e-07 V                  ; 3.64 V             ; -0.0201 V          ; 0.391 V                             ; 0.088 V                             ; 2.79e-10 s                 ; 3.95e-10 s                 ; No                        ; Yes                       ;
 ; ~ALTERA_TDO~    ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 1.68e-07 V                   ; 2.73 V              ; -0.0395 V           ; 0.361 V                              ; 0.109 V                              ; 3.1e-10 s                   ; 4.41e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 1.68e-07 V                  ; 2.73 V             ; -0.0395 V          ; 0.361 V                             ; 0.109 V                             ; 3.1e-10 s                  ; 4.41e-10 s                 ; No                        ; Yes                       ;
 +-----------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 
 
-+-----------------------------------------------------------------------------------------------+
-; Setup Transfers                                                                               ;
-+-------------------------+-------------------------+----------+----------+----------+----------+
-; From Clock              ; To Clock                ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
-+-------------------------+-------------------------+----------+----------+----------+----------+
-; MAX10_CLK1_50           ; MAX10_CLK1_50           ; 9        ; 0        ; 0        ; 0        ;
-; Prescaler:pres|count[3] ; MAX10_CLK1_50           ; 1        ; 1        ; 0        ; 0        ;
-; Prescaler:pres|count[3] ; Prescaler:pres|count[3] ; 904      ; 0        ; 0        ; 0        ;
-; UART:uart0|pAvailable   ; Prescaler:pres|count[3] ; 9        ; 1        ; 0        ; 0        ;
-; UART:uart0|pAvailable   ; UART:uart0|pAvailable   ; 52       ; 0        ; 0        ; 0        ;
-+-------------------------+-------------------------+----------+----------+----------+----------+
++-------------------------------------------------------------------------------------------------+
+; Setup Transfers                                                                                 ;
++--------------------------+--------------------------+----------+----------+----------+----------+
+; From Clock               ; To Clock                 ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++--------------------------+--------------------------+----------+----------+----------+----------+
+; MAX10_CLK1_50            ; MAX10_CLK1_50            ; 30       ; 0        ; 0        ; 0        ;
+; Prescaler:presA|count[3] ; MAX10_CLK1_50            ; 1        ; 1        ; 0        ; 0        ;
+; Prescaler:presB|count[6] ; MAX10_CLK1_50            ; 1        ; 1        ; 0        ; 0        ;
+; Prescaler:presA|count[3] ; Prescaler:presA|count[3] ; 1211     ; 98       ; 0        ; 0        ;
+; Prescaler:presB|count[6] ; Prescaler:presA|count[3] ; 106      ; 0        ; 0        ; 0        ;
+; Prescaler:presB|count[6] ; Prescaler:presB|count[6] ; 125      ; 0        ; 0        ; 0        ;
++--------------------------+--------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
-+-----------------------------------------------------------------------------------------------+
-; Hold Transfers                                                                                ;
-+-------------------------+-------------------------+----------+----------+----------+----------+
-; From Clock              ; To Clock                ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
-+-------------------------+-------------------------+----------+----------+----------+----------+
-; MAX10_CLK1_50           ; MAX10_CLK1_50           ; 9        ; 0        ; 0        ; 0        ;
-; Prescaler:pres|count[3] ; MAX10_CLK1_50           ; 1        ; 1        ; 0        ; 0        ;
-; Prescaler:pres|count[3] ; Prescaler:pres|count[3] ; 904      ; 0        ; 0        ; 0        ;
-; UART:uart0|pAvailable   ; Prescaler:pres|count[3] ; 9        ; 1        ; 0        ; 0        ;
-; UART:uart0|pAvailable   ; UART:uart0|pAvailable   ; 52       ; 0        ; 0        ; 0        ;
-+-------------------------+-------------------------+----------+----------+----------+----------+
++-------------------------------------------------------------------------------------------------+
+; Hold Transfers                                                                                  ;
++--------------------------+--------------------------+----------+----------+----------+----------+
+; From Clock               ; To Clock                 ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++--------------------------+--------------------------+----------+----------+----------+----------+
+; MAX10_CLK1_50            ; MAX10_CLK1_50            ; 30       ; 0        ; 0        ; 0        ;
+; Prescaler:presA|count[3] ; MAX10_CLK1_50            ; 1        ; 1        ; 0        ; 0        ;
+; Prescaler:presB|count[6] ; MAX10_CLK1_50            ; 1        ; 1        ; 0        ; 0        ;
+; Prescaler:presA|count[3] ; Prescaler:presA|count[3] ; 1211     ; 98       ; 0        ; 0        ;
+; Prescaler:presB|count[6] ; Prescaler:presA|count[3] ; 106      ; 0        ; 0        ; 0        ;
+; Prescaler:presB|count[6] ; Prescaler:presB|count[6] ; 125      ; 0        ; 0        ; 0        ;
++--------------------------+--------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
@@ -989,22 +993,31 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
-; Unconstrained Input Ports       ; 0     ; 0    ;
-; Unconstrained Input Port Paths  ; 0     ; 0    ;
-; Unconstrained Output Ports      ; 16    ; 16   ;
-; Unconstrained Output Port Paths ; 58    ; 58   ;
+; Unconstrained Input Ports       ; 1     ; 1    ;
+; Unconstrained Input Port Paths  ; 1     ; 1    ;
+; Unconstrained Output Ports      ; 19    ; 19   ;
+; Unconstrained Output Port Paths ; 61    ; 61   ;
 +---------------------------------+-------+------+
 
 
-+------------------------------------------------------------------------+
-; Clock Status Summary                                                   ;
-+-------------------------+-------------------------+------+-------------+
-; Target                  ; Clock                   ; Type ; Status      ;
-+-------------------------+-------------------------+------+-------------+
-; MAX10_CLK1_50           ; MAX10_CLK1_50           ; Base ; Constrained ;
-; Prescaler:pres|count[3] ; Prescaler:pres|count[3] ; Base ; Constrained ;
-; UART:uart0|pAvailable   ; UART:uart0|pAvailable   ; Base ; Constrained ;
-+-------------------------+-------------------------+------+-------------+
++--------------------------------------------------------------------------+
+; Clock Status Summary                                                     ;
++--------------------------+--------------------------+------+-------------+
+; Target                   ; Clock                    ; Type ; Status      ;
++--------------------------+--------------------------+------+-------------+
+; MAX10_CLK1_50            ; MAX10_CLK1_50            ; Base ; Constrained ;
+; Prescaler:presA|count[3] ; Prescaler:presA|count[3] ; Base ; Constrained ;
+; Prescaler:presB|count[6] ; Prescaler:presB|count[6] ; Base ; Constrained ;
++--------------------------+--------------------------+------+-------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                         ;
++------------+--------------------------------------------------------------------------------------+
+; Input Port ; Comment                                                                              ;
++------------+--------------------------------------------------------------------------------------+
+; KEY[0]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++------------+--------------------------------------------------------------------------------------+
 
 
 +--------------------------------------------------------------------------------------------------------+
@@ -1012,6 +1025,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +----------------+---------------------------------------------------------------------------------------+
 ; Output Port    ; Comment                                                                               ;
 +----------------+---------------------------------------------------------------------------------------+
+; ARDUINO_IO[11] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ARDUINO_IO[12] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ARDUINO_IO[13] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX0[0]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -1021,6 +1035,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; HEX0[4]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX0[5]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX0[6]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; HEX0[7]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX1[0]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX1[1]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX1[2]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -1028,7 +1043,17 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; HEX1[4]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX1[5]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX1[6]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; HEX1[7]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +----------------+---------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                         ;
++------------+--------------------------------------------------------------------------------------+
+; Input Port ; Comment                                                                              ;
++------------+--------------------------------------------------------------------------------------+
+; KEY[0]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++------------+--------------------------------------------------------------------------------------+
 
 
 +--------------------------------------------------------------------------------------------------------+
@@ -1036,6 +1061,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +----------------+---------------------------------------------------------------------------------------+
 ; Output Port    ; Comment                                                                               ;
 +----------------+---------------------------------------------------------------------------------------+
+; ARDUINO_IO[11] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ARDUINO_IO[12] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; ARDUINO_IO[13] ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX0[0]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -1045,6 +1071,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; HEX0[4]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX0[5]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX0[6]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; HEX0[7]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX1[0]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX1[1]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX1[2]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -1052,6 +1079,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; HEX1[4]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX1[5]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; HEX1[6]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; HEX1[7]        ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +----------------+---------------------------------------------------------------------------------------+
 
 
@@ -1061,99 +1089,103 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Thu Mar 24 21:58:32 2022
+    Info: Processing started: Thu Mar 31 22:37:58 2022
 Info: Command: quartus_sta Serial_Comm -c 7SegController
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
+Warning (335093): The Timing Analyzer is analyzing 1 combinational loops as latches. For more details, run the Check Timing command in the Timing Analyzer or view the "User-Specified and Inferred Latches" table in the Analysis & Synthesis report.
 Critical Warning (332012): Synopsys Design Constraints File file not found: '7SegController.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
 Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
 Info (332105): Deriving Clocks
-    Info (332105): create_clock -period 1.000 -name UART:uart0|pAvailable UART:uart0|pAvailable
-    Info (332105): create_clock -period 1.000 -name Prescaler:pres|count[3] Prescaler:pres|count[3]
+    Info (332105): create_clock -period 1.000 -name Prescaler:presB|count[6] Prescaler:presB|count[6]
     Info (332105): create_clock -period 1.000 -name MAX10_CLK1_50 MAX10_CLK1_50
+    Info (332105): create_clock -period 1.000 -name Prescaler:presA|count[3] Prescaler:presA|count[3]
+Warning (332125): Found combinational loop of 2 nodes File: D:/Projects/DE10_lite_Serial_Comm/src/FlipFlopSR.v Line: 6
+    Warning (332126): Node "uart0|pGen|ffSRA|Qout~1|combout"
+    Warning (332126): Node "uart0|pGen|ffSRA|Qout~1|datab"
 Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1200mV 85C Model
 Info: Can't run Report Timing Closure Recommendations. The current device family is not supported.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -3.131
+Info (332146): Worst-case setup slack is -4.910
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.131             -44.268 Prescaler:pres|count[3] 
-    Info (332119):    -1.502              -1.655 MAX10_CLK1_50 
-    Info (332119):    -1.140              -6.156 UART:uart0|pAvailable 
-Info (332146): Worst-case hold slack is 0.325
+    Info (332119):    -4.910             -74.783 Prescaler:presA|count[3] 
+    Info (332119):    -1.804              -5.802 MAX10_CLK1_50 
+    Info (332119):    -1.345             -14.743 Prescaler:presB|count[6] 
+Info (332146): Worst-case hold slack is 0.246
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.325               0.000 MAX10_CLK1_50 
-    Info (332119):     0.534               0.000 UART:uart0|pAvailable 
-    Info (332119):     0.658               0.000 Prescaler:pres|count[3] 
+    Info (332119):     0.246               0.000 Prescaler:presA|count[3] 
+    Info (332119):     0.344               0.000 MAX10_CLK1_50 
+    Info (332119):     0.344               0.000 Prescaler:presB|count[6] 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000              -7.888 MAX10_CLK1_50 
-    Info (332119):    -1.222             -31.772 Prescaler:pres|count[3] 
-    Info (332119):    -1.222              -9.776 UART:uart0|pAvailable 
+    Info (332119):    -3.000             -12.776 MAX10_CLK1_50 
+    Info (332119):    -1.222             -20.774 Prescaler:presA|count[3] 
+    Info (332119):    -1.222             -20.774 Prescaler:presB|count[6] 
 Info: Analyzing Slow 1200mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Warning (334000): Timing characteristics of device 10M50DAF484C6GES are preliminary
 Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -2.801
+Info (332146): Worst-case setup slack is -4.401
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.801             -38.345 Prescaler:pres|count[3] 
-    Info (332119):    -1.224              -1.275 MAX10_CLK1_50 
-    Info (332119):    -0.946              -4.901 UART:uart0|pAvailable 
-Info (332146): Worst-case hold slack is 0.294
+    Info (332119):    -4.401             -66.800 Prescaler:presA|count[3] 
+    Info (332119):    -1.576              -4.668 MAX10_CLK1_50 
+    Info (332119):    -1.110             -11.960 Prescaler:presB|count[6] 
+Info (332146): Worst-case hold slack is 0.170
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.294               0.000 MAX10_CLK1_50 
-    Info (332119):     0.496               0.000 UART:uart0|pAvailable 
-    Info (332119):     0.625               0.000 Prescaler:pres|count[3] 
+    Info (332119):     0.170               0.000 Prescaler:presA|count[3] 
+    Info (332119):     0.313               0.000 MAX10_CLK1_50 
+    Info (332119):     0.313               0.000 Prescaler:presB|count[6] 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000              -7.888 MAX10_CLK1_50 
-    Info (332119):    -1.222             -31.772 Prescaler:pres|count[3] 
-    Info (332119):    -1.222              -9.776 UART:uart0|pAvailable 
+    Info (332119):    -3.000             -12.776 MAX10_CLK1_50 
+    Info (332119):    -1.222             -20.774 Prescaler:presA|count[3] 
+    Info (332119):    -1.222             -20.774 Prescaler:presB|count[6] 
 Info: Analyzing Fast 1200mV 0C Model
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -0.984
+Info (332146): Worst-case setup slack is -1.860
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.984              -8.108 Prescaler:pres|count[3] 
-    Info (332119):    -0.614              -0.614 MAX10_CLK1_50 
-    Info (332119):    -0.004              -0.004 UART:uart0|pAvailable 
-Info (332146): Worst-case hold slack is 0.144
+    Info (332119):    -1.860             -27.622 Prescaler:presA|count[3] 
+    Info (332119):    -0.672              -1.319 MAX10_CLK1_50 
+    Info (332119):    -0.145              -0.429 Prescaler:presB|count[6] 
+Info (332146): Worst-case hold slack is 0.001
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.144               0.000 Prescaler:pres|count[3] 
-    Info (332119):     0.148               0.000 MAX10_CLK1_50 
-    Info (332119):     0.238               0.000 UART:uart0|pAvailable 
+    Info (332119):     0.001               0.000 Prescaler:presA|count[3] 
+    Info (332119):     0.157               0.000 MAX10_CLK1_50 
+    Info (332119):     0.157               0.000 Prescaler:presB|count[6] 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000              -7.688 MAX10_CLK1_50 
-    Info (332119):    -1.000             -26.000 Prescaler:pres|count[3] 
-    Info (332119):    -1.000              -8.000 UART:uart0|pAvailable 
+    Info (332119):    -3.000             -12.360 MAX10_CLK1_50 
+    Info (332119):    -1.000             -17.000 Prescaler:presA|count[3] 
+    Info (332119):    -1.000             -17.000 Prescaler:presB|count[6] 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
-Info: Quartus Prime Timing Analyzer was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 4967 megabytes
-    Info: Processing ended: Thu Mar 24 21:58:34 2022
+Info: Quartus Prime Timing Analyzer was successful. 0 errors, 10 warnings
+    Info: Peak virtual memory: 4970 megabytes
+    Info: Processing ended: Thu Mar 31 22:38:00 2022
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:03
 

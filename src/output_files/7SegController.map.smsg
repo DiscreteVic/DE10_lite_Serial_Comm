@@ -1,1 +1,1 @@
-Warning (10268): Verilog HDL information at UART.v(19): always construct contains both blocking and non-blocking assignments File: D:/Projects/DE10_lite_Serial_Comm/src/UART.v Line: 19
+Warning (10268): Verilog HDL information at UART.v(26): always construct contains both blocking and non-blocking assignments File: D:/Projects/DE10_lite_Serial_Comm/src/UART.v Line: 26
